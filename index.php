@@ -1,26 +1,3 @@
-<?php
-// include ("function.php");
-
-// if(isset($_POST['user_email']) && isset($_POST['user_password'])) {
-//   $user_email = mysqli_real_escape_string($conn, $_POST['user_email']);
-//   $user_password = $_POST['user_password'];
-
-//   $user_query = mysqli_query($conn, "SELECT * FROM users_tbl WHERE user_email = '$user_email'");
-
-//   if(mysqli_num_rows($user_query) > 0) {
-//     $row = mysqli_fetch_assoc($user_query);
-//     if($user_password == $row["user_password"]) {
-//       $_SESSION["user_id"] = $row["user_id"];
-//       header("Location: profile.php");
-//       exit();
-//     } else {
-//       echo "Wrong Password";
-//     }
-//   } else {
-//     echo "User Not Registered";
-//   }
-// }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +28,7 @@
 
             <form id="loginForm">
               <div class="mb-3">
+                <span id="flashMessage" class="text-danger"></span>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email address or phone number"
                   value="muhammadhamza@gmail.com">
               </div>
@@ -74,24 +52,22 @@
       </div>
     </div>
   </div>
-
   <!-- <footer class="bg-primary text-center text-white fixed-bottom">
     <div class="container p-4 pb-0">
       <section class="mb-4">
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="index.php" role="button"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://twitter.com/" role="button"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://mail.google.com/" role="button"><i class="fab fa-google"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.instagram.com/" role="button"><i class="fab fa-instagram"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.linkedin.com/home" role="button"><i class="fab fa-linkedin-in"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/hamza043" role="button"><i class="fab fa-github"></i></a>
       </section>
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      © 2023 Copyright:
+      <a class="text-white" href="index.php">Facebook</a>
     </div>
   </footer> -->
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../Ajax Assigment/Jquery/jquery.js"></script>
 <script>
@@ -100,10 +76,6 @@ $(document).ready(function() {
         e.preventDefault();
         var email = $("#email").val();
         var password = $("#password").val();
-
-        // console.log('email', email, 'password', password);
-        // return;
-
         $.ajax({
             type: "POST",
             url: "function.php",  
@@ -112,54 +84,18 @@ $(document).ready(function() {
               user_password: password
             },
             success: function(response) {
-                
-                console.log(response + "kch b");
-                // return;
-                if(response == "Your are logged in"){
-                console.log(response + "andr hun");
-
-                  // window.location.href = "profile.php";
-                }
-            },
-            error: function(error) {
-                console.log('error', error);
-            }
-        });
-    });
+        if (response == "Invalid email or password") {
+        $("#flashMessage").text("Invalid email or password.").addClass("error-message");
+    }else if (response == "login success") {
+        window.location.href = "profile.php";
+    }
+  },
+        error: function(error) {
+        console.log('error', error);
+          }
+      });
+   });
 });
-
-
-
-//   $(document).ready(function() {
-//     $("#loginForm").submit(function(e) {
-//         e.preventDefault();
-//         var email = $("#email").val();
-//         var password = $("#password").val();
-        
-
-//         // AJAX request bhejein
-//         $.ajax({
-//             type: "POST",
-//             url: "login.php",
-//             data: {
-//                 email: email,
-//                 password: password
-//             },
-//             success: function(response) {
-//                 if(response == "Success") {
-//                     // User login successful, redirect to another page
-//                     window.location.href = "profile.html";
-//                 } else {
-//                     // Show error message to user
-//                     alert("Invalid email or password. Please try again.");
-//                 }
-//             },
-//             error: function(error) {
-//                 console.log(error);
-//             }
-//         });
-//     });
-// });
 </script>
 </body>
 
