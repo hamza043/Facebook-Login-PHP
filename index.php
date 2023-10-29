@@ -32,9 +32,9 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email address or phone number"
                   value="muhammadhamza@gmail.com">
               </div>
-              <div class="mb-3">
+                <div class="mb-3">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="123">
-              </div>
+                </div>
               <button type="submit" class="btn btn-primary btn-block"
                 style="font-weight:bolder; width: 100%;height: 50px;font-size: larger;">Log in</button>
               <div class="text-center mt-3">
@@ -70,33 +70,33 @@
   </footer> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../Ajax Assigment/Jquery/jquery.js"></script>
-<script>
-$(document).ready(function() {
-    $("#loginForm").submit(function(e) {
+  <script>
+    $(document).ready(function() {
+      $("#loginForm").submit(function(e) {
         e.preventDefault();
         var email = $("#email").val();
         var password = $("#password").val();
         $.ajax({
-            type: "POST",
-            url: "function.php",  
-            data: {
-              user_email: email,
-              user_password: password
-            },
-            success: function(response) {
-        if (response == "Invalid email or password") {
-        $("#flashMessage").text("Invalid email or password.").addClass("error-message");
-    }else if (response == "login success") {
-        window.location.href = "profile.php";
-    }
-  },
-        error: function(error) {
-        console.log('error', error);
+          type: "POST",
+          url: "function.php",  
+          data: {
+            user_email: email,
+            user_password: password
+          },
+          success: function(response) {
+            if (response == "Invalid email or password") {
+              $("#flashMessage").text("Invalid email or password.").addClass("error-message");
+            } else if (response == "login success") {
+              window.location.href = "profile.php";
+            }
+          },
+          error: function(error) {
+            console.log('error', error);
           }
+        });
       });
-   });
-});
-</script>
+    });
+  </script>
 </body>
 
 </html>

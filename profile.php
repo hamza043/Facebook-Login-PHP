@@ -51,7 +51,7 @@ if(isset($_SESSION["login"]) && $_SESSION["login"] === true && isset($_SESSION["
                         <h2 class="mt-3">' . $userData["user_name"] . '</h2>
                         <p><strong>Contact: </strong>' . $userData["user_contact"] . '</p>
                         <p><strong>Gender: </strong>' . $userData["user_gender"] . '</p>
-                        <a href="index.php" class="btn btn-danger logout-btn">Logout</a>
+                        <a href="logout.php" class="btn btn-danger logout-btn">Logout</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ if(isset($_SESSION["login"]) && $_SESSION["login"] === true && isset($_SESSION["
 }
 ?>
 
-<footer class="bg-primary text-center text-white fixed-bottom">
+  <footer class="bg-primary text-center text-white fixed-bottom">
     <div class="container p-4 pb-0">
       <section class="mb-4">
         <a class="btn btn-outline-light btn-floating m-1" href="index.php" role="button"><i class="fab fa-facebook-f"></i></a>
