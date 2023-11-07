@@ -30,11 +30,10 @@
             <form id="loginForm">
               <div class="mb-3">
                 <span id="flashMessage" class="text-danger"></span>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email address or phone number"
-                  value="muhammadhamza@gmail.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email address or phone number">
               </div>
                 <div class="mb-3">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="123">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
               <button type="submit" class="btn btn-primary btn-block"
                 style="font-weight:bolder; width: 100%;height: 50px;font-size: larger;">Log in</button>
@@ -62,6 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="exampleModalLabel">Sign Up</h2>
+                <p >It's quick and easy.</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -123,7 +123,8 @@
           url: "function.php",  
           data: {
             user_email: email,
-            user_password: password
+            user_password: password,
+            call_key: "Login"
           },
           success: function(response) {
             if (response == "Invalid email or password") {
@@ -166,19 +167,22 @@ $(document).ready(function() {
         user_email: email,
         user_contact: contact,
         user_gender: gender,
-        user_password: password
+        user_password: password,
+        call_key: "Signup"
+
       },  
       success: function(response) {
+        console.log(response);
         if (response == "success") {
-          alert("Signup successful!");
+          console.log("Signup successful!");
           signupModal.hide(); 
         } else {
-          alert("Signup failed. Please try again.");
-          }
-      },
-        error: function(error) {
-          console.log('error', error);
+          console.log("Signup failed. Please try again.");
         }
+      },
+      error: function(error) {
+        console.log('error', error);
+      }
     });
   });
 });

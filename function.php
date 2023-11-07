@@ -2,13 +2,14 @@
 session_start();
 include("connection.php");
 
+if(isset($_POST['user_email']) && isset($_POST['user_password']) && isset($_POST['call_key']) && $_POST['call_key'] == 'Login') {
+    $email = $_POST['user_email'];
+    $password = $_POST['user_password'];
 
-if(isset($_POST['user_email']) && isset($_POST['user_password'])) {
-        $email = $_POST['user_email'];
-        $password = $_POST['user_password'];
-        
-        login($email, $password);
+    
+    login($email, $password);
 }
+
 function login($email, $password){
     global $conn;
     $user = mysqli_query($conn, "SELECT * FROM users_tbl WHERE user_email = '$email'");
@@ -33,7 +34,8 @@ function login($email, $password){
         echo "Invalid email or password";
     }
 }
-if(isset($_POST['user_name']) && isset($_POST['user_email']) && isset($_POST['user_contact']) && isset($_POST['user_gender']) && isset($_POST['user_password'])) {
+
+if(isset($_POST['user_name']) && isset($_POST['user_email']) && isset($_POST['user_contact']) && isset($_POST['user_gender']) && isset($_POST['user_password']) && isset($_POST['call_key']) && $_POST['call_key'] == 'Signup') {
     $name = $_POST['user_name'];
     $email = $_POST['user_email'];
     $contact = $_POST['user_contact'];
@@ -47,7 +49,6 @@ function registerUser($name, $email, $contact, $gender, $password) {
     $sqlQuery = "INSERT INTO users_tbl (user_name, user_email, user_contact, user_gender, user_password) VALUES ('$name', '$email','$contact', '$gender', '$password')";
     if (mysqli_query($conn, $sqlQuery)) {
         echo 'success';
-        exit;
     } else {
         echo 'error';
     }
