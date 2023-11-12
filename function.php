@@ -23,7 +23,12 @@ function login($email, $password){
         $userData = array(
             "user_id" => $row["user_id"],
             "user_name" => $row["user_name"],
+            "user_email" => $row["user_email"],
+            "user_age" => $row["user_age"],
+            "user_education" => $row["user_education"],
+            "user_city" => $row["user_city"],
             "user_contact" => $row["user_contact"],
+            "user_address" => $row["user_address"],
             "user_gender" => $row["user_gender"]
         );
         // Encode user data as JSON and store it in session
@@ -34,7 +39,7 @@ function login($email, $password){
         echo "Invalid email or password";
     }
 }
-
+//sign up
 if(isset($_POST['user_name']) && isset($_POST['user_email']) && isset($_POST['user_contact']) && isset($_POST['user_gender']) && isset($_POST['user_password']) && isset($_POST['call_key']) && $_POST['call_key'] == 'Signup') {
     $name = $_POST['user_name'];
     $email = $_POST['user_email'];
