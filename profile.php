@@ -55,6 +55,10 @@
   </header> -->
   <?php
 session_start();
+if(!isset($_SESSION['user_email'])){
+  echo "<script type='text/javascript'>alert('Please login first.'); window.location = 'index.php';</script>";
+}else{
+}
 $pieChartData = [
   ['Task', 'Hours per Day'],
   ['Work', 11],
@@ -78,7 +82,9 @@ if(isset($_SESSION["login"]) && $_SESSION["login"] === true && isset($_SESSION["
         <div class="col-md-3">
           <div class="profile-container p-4 bg-light mt-4 text-center">
             <img src="./images/Profile pic.jpg" alt="Profile Picture" class="rounded-circle" style="width: 150px; height: 140px;">
-            <h2 class="mt-3">' . $userData["user_name"] . '</h2>
+            <a href="users.php" style="text-decoration: none; color: #333; transition: color 0.3s;"> <!-- Add styling to the anchor tag -->
+              <h2 class="mt-3" style="cursor: pointer;"  title="More details.">' . $userData["user_name"] . '</h2>
+            </a>
             <p><strong>Contact: </strong>' . $userData["user_contact"] . '</p>
             <p><strong>Gender: </strong>' . $userData["user_gender"] . '</p>
           </div>
